@@ -138,6 +138,11 @@ export interface Auth0ContextInterface<TUser extends User = User>
    * @param url The URL to that should be used to retrieve the `state` and `code` values. Defaults to `window.location.href` if not given.
    */
   handleRedirectCallback: (url?: string) => Promise<RedirectLoginResult>;
+
+  /**
+   * Returns the user information if available (decoded from the `id_token`).
+   */
+  getUser: <TUser>() => Promise<TUser | undefined>;
 }
 
 /**
@@ -161,6 +166,7 @@ export const initialContext = {
   loginWithPopup: stub,
   logout: stub,
   handleRedirectCallback: stub,
+  getUser: stub,
 };
 
 /**
